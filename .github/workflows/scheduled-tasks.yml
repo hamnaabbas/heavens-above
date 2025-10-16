@@ -1,0 +1,22 @@
+name: Scheduled Task
+
+on:
+  schedule:
+    # Runs every day at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # allows manual trigger
+
+jobs:
+  daily-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show current date and time
+        run: echo "The current UTC time is $(date -u)"
+
+      - name: Run a sample script
+        run: |
+          echo "Running daily maintenance task..."
+          echo "Task completed successfully ✅"
